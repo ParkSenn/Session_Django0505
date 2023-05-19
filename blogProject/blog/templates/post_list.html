@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>귀염둥이 동덕 멋사 블로그</h2>
+    <!-- 수정된 코드 -->
+    {% for post in posts %}
+    <h3> <a href="{% url 'post_detail' post.id %}"> {{post.title}} </a></h3>
+        {{post.body}}
+        <hr>
+    {% endfor %}   
+
+    <!-- 페이지네이션 -->
+    {% if posts.has_previous %} <!--지금 잘라서 보여주는 posts의 목록이 이전 페이지가 있다면-->
+    <a href="?page=1">첫 페이지</a>
+    <a href="?page={{posts.previous_page_number}}">이전 페이지</a> <!--posts의 이전 페이지 숫자를 반환해라-->
+    {% endif %}
+
+    <span> {{ posts.number }} </span> <!--현재 페이지 넘버-->
+    <span> / </span>
+    <span> {{ posts.paginator.num_pages }} </span> <!--잘린 posts가 갖고 있는 총 페이지 수 반환-->
+
+    {% if posts.has_next %} <!--다음 페이지가 있다면-->
+    <a href="?page={{posts.next_page_number}}">다음 페이지</a>
+    <a href="?page={{posts.paginator.num_pages}}">마지막 페이지</a>
+    {% endif %}
+</body>
+</html>

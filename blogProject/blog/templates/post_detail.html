@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>제목: {{post.title}} </h2>
+    <h4>작성 시간: {{post.created_at}} </h4>
+    <hr>
+    <p> {{post.body}} </p>
+    <hr>
+    <a href="{% url 'post_update' post.id %}">게시글 수정하기</a> 
+    <a href="{% url 'post_delete' post.id %}">게시글 삭제하기</a>
+    <br><br>
+    <hr>
+    <h4>댓글</h4>
+    <form method="POST" action="{% url 'create_comment' post.id %}"> 
+        <!--제출 버튼을 누르면 create_comment라는 url로 이동, 그리고 어느 게시글인지 알려줘야 하니까 id도 같이 보냄-->
+            {% csrf_token %}
+            {{comment_form}}
+            <input type="submit">
+    </form>
+    <hr>
+    <!-- 댓글 목록들 -->
+    <!-- for문을 돌 때마다 blog_detail을 참조하고 있는 comment 객체들의 집합을 모조리 갖고와서 comment에 담아라 -->
+    {% for comment in post.comment_set.all %}
+    <p>{{ comment }}</p>
+    <a href="{% url 'update_comment' post.id comment.id %}"> 수정 </a>
+    <a href="{% url 'delete_comment' post.id comment.id %}"> 삭제 </a>
+    <hr>
+    {% endfor %}
+</body>
+</html>
