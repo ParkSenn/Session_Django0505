@@ -10,6 +10,10 @@
     <h2>제목: {{post.title}} </h2>
     <h4>작성 시간: {{post.created_at}} </h4>
     <hr>
+    <h3>사진</h3>
+    {% if post.photo %}
+        <img src = "{{ post.photo.url }}" alt="" height="300">
+    {% endif %}
     <p> {{post.body}} </p>
     <hr>
     <a href="{% url 'post_update' post.id %}">게시글 수정하기</a> 

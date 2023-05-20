@@ -40,8 +40,8 @@ def post_detail(request, id):
 
 def post_update(request, id):
     post = get_object_or_404(Post, pk=id)
-    if request.method == 'POST':
-        form = PostModelForm(request.POST, instance=post)
+    if request.method == 'POST' or request.method == 'FILES':
+        form = PostModelForm(request.POST, request.FILES, instance=post)
         if form.is_valid():
             form.save()
             return redirect('post_list')
