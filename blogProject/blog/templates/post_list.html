@@ -11,6 +11,7 @@
     <!-- 수정된 코드 -->
     {% for post in posts %}
     <h3> <a href="{% url 'post_detail' post.id %}"> {{post.title}} </a></h3>
+        작성자: {{post.author}}<br>
         {{post.body}}
         <hr>
     {% endfor %}   

@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from blog import views
 
 urlpatterns = [
@@ -17,6 +17,8 @@ urlpatterns = [
     path('create_comment/<int:id>', views.create_comment, name='create_comment'),
     path('update_comment/<int:post_id>/<int:com_id>', views.update_comment, name='update_comment'),
     path('delete_comment/<int:post_id>/<int:com_id>', views.delete_comment, name='delete_comment'),
+
+    path('accounts/', include('accounts.urls', namespace='accounts')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
