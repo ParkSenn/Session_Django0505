@@ -13,8 +13,11 @@ SECRET_KEY = 'django-insecure-db=h@1#sx7$(=(($@z6#zi8dsv_dhb(d3nim&rl(w$@w&xp@ai
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+# DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    # 'zimnii.pythonanywhere.com'
+]
 
 
 # Application definition
@@ -37,7 +40,6 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
 
     'allauth.socialaccount.providers.google',
-    'allauth.socialaccount.providers.kakao',
 ]
 
 SITE_ID = 1
