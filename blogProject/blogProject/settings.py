@@ -13,8 +13,11 @@ SECRET_KEY = 'django-insecure-db=h@1#sx7$(=(($@z6#zi8dsv_dhb(d3nim&rl(w$@w&xp@ai
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+# DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    # 'zimnii.pythonanywhere.com'
+]
 
 
 # Application definition
@@ -29,7 +32,27 @@ INSTALLED_APPS = [
     
     'blog',
     'accounts',
+
+    # 소셜 로그인을 위한 설정
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+
+    'allauth.socialaccount.providers.google',
 ]
+
+SITE_ID = 1
+
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+LOGIN_REDIRECT_URL = '/'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

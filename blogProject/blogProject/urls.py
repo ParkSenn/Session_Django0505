@@ -19,6 +19,7 @@ urlpatterns = [
     path('delete_comment/<int:post_id>/<int:com_id>', views.delete_comment, name='delete_comment'),
 
     path('accounts/', include('accounts.urls', namespace='accounts')),
+    path('authaccounts/', include('allauth.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
